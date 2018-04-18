@@ -10,6 +10,17 @@ Content-editable-formatter provides a handful of string formatting utilities for
 npm install content-editable-formatter --save
 ```
 
+## Usage
+
+```js
+import {
+  removeBrElements,
+  removeDivElements,
+  removeNonBreakingSpaces,
+  transformString
+} from 'content-editable-formatter'
+```
+
 ## API
 
 ### `transformString(string)`
