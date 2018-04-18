@@ -17,3 +17,9 @@ export function removeDivElements(str) {
 export function removeBrElements(str) {
   return str.replace(/< ?br ?\/?>/gi, '')
 }
+
+// Remove inline instances of &nbsp;, the character entity reference
+// Does not remove numeric character reference
+export function removeNonBreakingSpace(str) {
+  return str.replace(/&nbsp;/g, '')
+}
