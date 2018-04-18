@@ -19,7 +19,7 @@ const input = '<div><br></div>foo<br>&nbsp;'
 const cleanInput = transformString(input)(
   removeDivElements,
   removeBrElements,
-  removeNonBreakingSpace
+  removeNonBreakingSpaces
 )
 
 console.log(cleanInput) // 'foo'
@@ -45,12 +45,12 @@ const input = 'foo<br>bar'
 removeBrElements(input) // 'foobar'
 ```
 
-### `removeNonBreakingSpace(string)`
+### `removeNonBreakingSpaces(string)`
 
 Returns a string with all inline instance of `&nbsp;` removed. This does not remove the numeric character reference (`&#160;`, `&#xA0;`).
 
 ```js
 const input = 'foo&nbsp;bar'
 
-removeNonBreakingSpace(input) // 'foobar'
+removeNonBreakingSpaces(input) // 'foobar'
 ```

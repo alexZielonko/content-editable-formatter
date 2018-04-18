@@ -2,7 +2,7 @@ import {
   transformString,
   removeBrElements,
   removeDivElements,
-  removeNonBreakingSpace
+  removeNonBreakingSpaces
 } from '../src/index'
 
 describe('transformString', () => {
@@ -90,24 +90,24 @@ describe('removeBrElements', () => {
   })
 })
 
-describe('removeNonBreakingSpace', () => {
+describe('removeNonBreakingSpaces', () => {
   it('Does not remove the characters "nbsp"', () => {
     const expected = 'nbsp'
-    const actual = removeNonBreakingSpace(expected)
+    const actual = removeNonBreakingSpaces(expected)
 
     expect(actual).toBe(expected)
   })
 
   it('Does not remove the characters "nbsp;"', () => {
     const expected = 'nbsp;'
-    const actual = removeNonBreakingSpace(expected)
+    const actual = removeNonBreakingSpaces(expected)
 
     expect(actual).toBe(expected)
   })
 
   it('Does not remove the characters "&nbsp"', () => {
     const expected = '&nbsp'
-    const actual = removeNonBreakingSpace(expected)
+    const actual = removeNonBreakingSpaces(expected)
 
     expect(actual).toBe(expected)
   })
@@ -115,21 +115,21 @@ describe('removeNonBreakingSpace', () => {
   it('Removes all instances of "&nbsp;"', () => {
     const str = '&nbsp;foo&nbsp;bar&nbsp;&nbsp;foobar&nbsp;&nbsp;'
     const expected = 'foobarfoobar'
-    const actual = removeNonBreakingSpace(str)
+    const actual = removeNonBreakingSpaces(str)
 
     expect(actual).toBe(expected)
   })
 
   it('Does not remove the numeric character reference "&#160;"', () => {
     const expected = 'foo&#160;bar'
-    const actual = removeNonBreakingSpace(expected)
+    const actual = removeNonBreakingSpaces(expected)
 
     expect(actual).toBe(expected)
   })
 
   it('Does not remove the numeric character reference "&#xA0;"', () => {
     const expected = 'foo&#xA0;bar'
-    const actual = removeNonBreakingSpace(expected)
+    const actual = removeNonBreakingSpaces(expected)
 
     expect(actual).toBe(expected)
   })
