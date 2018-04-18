@@ -27,6 +27,7 @@
     "coverage": "jest --coverage",
     "precommit": "lint-staged",
     "prepublish": "npm run build",
+    "prepush": "npm run test",
     "test": "jest",
     "testWatch": "jest --watchAll"
   },
