@@ -2,7 +2,7 @@
   "name": "content-editable-formatter",
   "version": "1.0.0",
   "description": "String formatting utilities for content editable div input",
-  "main": "index.js",
+  "main": "distribution/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/missedtheboat/content-editable-formatter.git"
@@ -23,8 +23,10 @@
   },
   "homepage": "https://github.com/missedtheboat/content-editable-formatter#readme",
   "scripts": {
+    "build": "babel src --out-dir distribution",
     "coverage": "jest --coverage",
     "precommit": "lint-staged",
+    "prepublish": "npm run build",
     "test": "jest",
     "testWatch": "jest --watchAll"
   },
@@ -35,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^22.4.3",
     "babel-preset-env": "^1.6.1",

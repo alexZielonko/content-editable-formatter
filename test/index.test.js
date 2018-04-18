@@ -3,7 +3,7 @@ import {
   removeBrElements,
   removeDivElements,
   removeNonBreakingSpace
-} from '../index'
+} from '../src/index'
 
 describe('transformString', () => {
   it('Returns a function', () => {
