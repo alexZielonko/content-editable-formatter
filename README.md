@@ -49,10 +49,21 @@ removeBrElements(input) // 'foobar'
 
 ### `removeNonBreakingSpaces(string)`
 
-Returns a string with all inline instance of `&nbsp;` removed. This does not remove the numeric character reference (`&#160;`, `&#xA0;`).
+Returns a string with all inline instance of `&nbsp;` removed. This does not remove the numeric character references (`&#160;`, `&#xA0;`).
 
 ```js
 const input = 'foo&nbsp;bar'
 
 removeNonBreakingSpaces(input) // 'foobar'
 ```
+
+
+## Future Versions
+
+Methods to be implemented in future versions include,
+* `removeAllHtmlElements(string)`
+* `removeCaridgeReturns(string)`
+* `removeWhiteSpaceMetacharacters(string)`
+* `removeLeadingBrElement(string)`
+* `removeTrailingBrElement(string)`
+* `unescapeHtml(string)`
