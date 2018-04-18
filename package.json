@@ -1,0 +1,49 @@
+{
+  "name": "content-editable-formatter",
+  "version": "1.0.0-alpha.0",
+  "description": "String formatting utilities for content editable div input",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/missedtheboat/content-editable-formatter.git"
+  },
+  "keywords": [
+    "contenteditable",
+    "content",
+    "editable",
+    "string",
+    "formatting",
+    "util",
+    "utility"
+  ],
+  "author": "Alex Zielonko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/missedtheboat/content-editable-formatter/issues"
+  },
+  "homepage": "https://github.com/missedtheboat/content-editable-formatter#readme",
+  "scripts": {
+    "coverage": "jest --coverage",
+    "precommit": "lint-staged",
+    "test": "jest",
+    "testWatch": "jest --watchAll"
+  },
+  "lint-staged": {
+    "*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "jest-cli": "^22.4.3",
+    "prettier": "1.12.1"
+  },
+  "jest": {
+    "transform": {
+      ".*": "<rootDir>/node_modules/babel-jest"
+    }
+  }
+}
