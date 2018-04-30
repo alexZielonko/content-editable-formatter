@@ -2,6 +2,7 @@ import {
   transformString,
   removeBrElements,
   removeDivElements,
+  removeEmptyEmphasisElements,
   removeNonBreakingSpaces
 } from '../src/index'
 
@@ -134,3 +135,55 @@ describe('removeNonBreakingSpaces', () => {
     expect(actual).toBe(expected)
   })
 })
+
+describe('removeEmptyEmphasisElements', () => {
+  it('Does not remove emphasis elements containing text', () => {
+    const expected = '<em>foo</em>'
+    const actual = removeEmptyEmphasisElements(expected)
+
+    expect(actual).toBe(expected)
+  })
+
+  it('Does not remove strong elements containg a single space', () => {
+    const expected = '<em> </em>'
+    const actual = removeEmptyEmphasisElements(expected)
+
+    expect(actual).toBe(expected)
+  })
+
+  it('Removes empty emphasis elements', () => {
+    const str = '<em></em>'
+    const actual = removeEmptyEmphasisElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  it('Is case insensative', () => {
+    const str = '<EM></EM>'
+    const actual = removeEmptyEmphasisElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  it('Removes all empty emphasis elements from a string', () => {
+    const str = '<em></em><EM></EM><em></em>'
+    const actual = removeEmptyEmphasisElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  test('Emphasis elements are considered empty and removed if only containing empty emphasis element children', () => {
+    const str = '<em><em><em><em></em></em></em></em>'
+    const actual = removeEmptyEmphasisElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  test('Emphasis elements containing non-empty children are not removed', () => {
+    const expected = '<em><em>foo</em></em>'
+    const actual = removeEmptyEmphasisElements(expected)
+
+    expect(actual).toBe(expected)
+  })
+})
+

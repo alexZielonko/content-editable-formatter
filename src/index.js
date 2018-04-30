@@ -23,3 +23,15 @@ export function removeBrElements(str) {
 export function removeNonBreakingSpaces(str) {
   return str.replace(/&nbsp;/g, '')
 }
+
+export function removeEmptyEmphasisElements(str) {
+  const regExp = /<em><\/em>/gi
+  const newStr = str.replace(regExp, '')
+
+  if (!!newStr.match(regExp)) {
+    return removeEmptyEmphasisElements(newStr)
+  }
+
+  return newStr
+}
+

@@ -68,6 +68,32 @@ const input = 'foo&nbsp;bar'
 removeNonBreakingSpaces(input) // 'foobar'
 ```
 
+### `removeEmptyEmphasisElements(string)`
+
+Whitespace sensative, this returns a string will all inline instances of `<em></em>` removed.
+
+```js
+const input = 'foo<em></em>bar'
+
+removeEmptyEmphasisElements(input) // 'foobar'
+```
+
+It will remove nested, empty `<em>` parents and children,
+
+```js
+const input = '<em><em></em></em>'
+
+removeEmptyEmphasisElements(input) // ''
+```
+
+but it will not remove any of the elements if the nested children enclose text,
+
+```js
+const input = '<em><em>foo</em></em>'
+
+removeEmptyEmphasisElements(input) // '<strong><strong>foo</strong></strong>'
+```
+
 
 ## Future Versions
 
