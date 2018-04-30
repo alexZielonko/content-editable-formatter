@@ -3,6 +3,7 @@ import {
   removeBrElements,
   removeDivElements,
   removeEmptyEmphasisElements,
+  removeEmptyParagraphElements,
   removeNonBreakingSpaces
 } from '../src/index'
 
@@ -182,6 +183,57 @@ describe('removeEmptyEmphasisElements', () => {
   test('Emphasis elements containing non-empty children are not removed', () => {
     const expected = '<em><em>foo</em></em>'
     const actual = removeEmptyEmphasisElements(expected)
+
+    expect(actual).toBe(expected)
+  })
+})
+
+describe('removeEmptyParagraphElements', () => {
+  it('Does not remove paragraph elements containing text', () => {
+    const expected = '<p>foo</p>'
+    const actual = removeEmptyParagraphElements(expected)
+
+    expect(actual).toBe(expected)
+  })
+
+  it('Does not remove strong elements containg a single space', () => {
+    const expected = '<p> </p>'
+    const actual = removeEmptyParagraphElements(expected)
+
+    expect(actual).toBe(expected)
+  })
+
+  it('Removes empty paragraph elements', () => {
+    const str = '<p></p>'
+    const actual = removeEmptyParagraphElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  it('Is case insensative', () => {
+    const str = '<P></P>'
+    const actual = removeEmptyParagraphElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  it('Removes all empty paragraph elements from a string', () => {
+    const str = '<p></p><P></P><p></p>'
+    const actual = removeEmptyParagraphElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  test('Emphasis elements are considered empty and removed if only containing empty paragraph element children', () => {
+    const str = '<p><p><p><p></p></p></p></p>'
+    const actual = removeEmptyParagraphElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  test('Emphasis elements containing non-empty children are not removed', () => {
+    const expected = '<p><p>foo</p></p>'
+    const actual = removeEmptyParagraphElements(expected)
 
     expect(actual).toBe(expected)
   })

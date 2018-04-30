@@ -94,6 +94,32 @@ const input = '<em><em>foo</em></em>'
 removeEmptyEmphasisElements(input) // '<strong><strong>foo</strong></strong>'
 ```
 
+### `removeEmptyParagraphElements(string)`
+
+Whitespace sensative, this returns a string will all inline instances of `<p></p>` removed.
+
+```js
+const input = 'foo<p></p>bar'
+
+removeEmptyEmphasisElements(input) // 'foobar'
+```
+
+It will remove nested, empty `<p>` parents and children,
+
+```js
+const input = '<p><p></p></p>'
+
+removeEmptyEmphasisElements(input) // ''
+```
+
+but it will not remove any of the elements if the nested children enclose text,
+
+```js
+const input = '<p><p>foo</p></p>'
+
+removeEmptyEmphasisElements(input) // '<strong><strong>foo</strong></strong>'
+```
+
 
 ## Future Versions
 

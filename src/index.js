@@ -35,3 +35,14 @@ export function removeEmptyEmphasisElements(str) {
   return newStr
 }
 
+export function removeEmptyParagraphElements(str) {
+  const regExp = /<p><\/p>/gi
+  const newStr = str.replace(regExp, '')
+
+  if (!!newStr.match(regExp)) {
+    return removeEmptyParagraphElements(newStr)
+  }
+
+  return newStr
+}
+
