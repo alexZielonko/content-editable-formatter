@@ -1,6 +1,6 @@
 {
   "name": "content-editable-formatter",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "String formatting utilities for content editable div input",
   "main": "distribution/index.js",
   "repository": {
