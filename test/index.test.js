@@ -4,6 +4,7 @@ import {
   removeDivElements,
   removeEmptyEmphasisElements,
   removeEmptyParagraphElements,
+  removeEmptyStrongElements,
   removeNonBreakingSpaces
 } from '../src/index'
 
@@ -239,3 +240,54 @@ describe('removeEmptyParagraphElements', () => {
   })
 })
 
+describe('removeEmptyStrongElements', () => {
+  it('Does not remove strong elements containing text', () => {
+    const expected = '<strong>foo</strong>'
+    const actual = removeEmptyStrongElements(expected)
+
+    expect(actual).toBe(expected)
+  })
+
+  it('Does not remove strong elements containg a single space', () => {
+    const expected = '<strong> </strong>'
+    const actual = removeEmptyStrongElements(expected)
+
+    expect(actual).toBe(expected)
+  })
+
+  it('Removes empty strong elements', () => {
+    const str = '<strong></strong>'
+    const actual = removeEmptyStrongElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  it('Is case insensative', () => {
+    const str = '<STRONG></STRONG>'
+    const actual = removeEmptyStrongElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  it('Removes all empty strong elements from a string', () => {
+    const str = '<strong></strong><STRONG></STRONG><strong></strong>'
+    const actual = removeEmptyStrongElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  test('Strong elements are considered empty and removed if only containing empty strong element children', () => {
+    const str =
+      '<strong><strong><strong><strong></strong></strong></strong></strong>'
+    const actual = removeEmptyStrongElements(str)
+
+    expect(actual).toBe('')
+  })
+
+  test('Strong elements containing non-empty children are not removed', () => {
+    const expected = '<strong><strong>foo</strong></strong>'
+    const actual = removeEmptyStrongElements(expected)
+
+    expect(actual).toBe(expected)
+  })
+})

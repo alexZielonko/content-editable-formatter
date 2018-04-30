@@ -120,6 +120,32 @@ const input = '<p><p>foo</p></p>'
 removeEmptyEmphasisElements(input) // '<strong><strong>foo</strong></strong>'
 ```
 
+### `removeEmptyStrongElements(string)`
+
+Whitespace sensative, this returns a string will all inline instances of `<strong></strong>` removed.
+
+```js
+const input = 'foo<strong></strong>bar'
+
+removeEmptyStrongElements(input) // 'foobar'
+```
+
+It will remove nested, empty `<strong>` parents and children,
+
+```js
+const input = '<strong><strong></strong></strong>'
+
+removeEmptyStrongElements(input) // ''
+```
+
+but it will not remove any of the elements if the nested children enclose text,
+
+```js
+const input = '<strong><strong>foo</strong></strong>'
+
+removeEmptyStrongElements(input) // '<strong><strong>foo</strong></strong>'
+```
+
 
 ## Future Versions
 

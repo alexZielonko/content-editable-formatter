@@ -46,3 +46,13 @@ export function removeEmptyParagraphElements(str) {
   return newStr
 }
 
+export function removeEmptyStrongElements(str) {
+  const regExp = /<strong><\/strong>/gi
+  const newStr = str.replace(regExp, '')
+
+  if (!!newStr.match(regExp)) {
+    return removeEmptyStrongElements(newStr)
+  }
+
+  return newStr
+}
