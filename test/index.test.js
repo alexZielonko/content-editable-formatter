@@ -1,12 +1,13 @@
 import {
-  transformString,
   removeBrElements,
   removeDivElements,
   removeEmptyEmphasisElements,
   removeEmptyParagraphElements,
   removeEmptyStrongElements,
   removeLeadingBrElements,
-  removeNonBreakingSpaces
+  removeNonBreakingSpaces,
+  removeTrailingBrElements,
+  transformString
 } from '../src/index'
 
 describe('transformString', () => {
@@ -324,3 +325,26 @@ describe('removeLeadingBrElements', () => {
   })
 })
 
+describe('removeTrailingBrElements', () => {
+  it('Does not remove non-trailing <br> elements', () => {
+    const str = '<br><br/><br />foo<br>bar'
+    const actual = removeTrailingBrElements(str)
+
+    expect(actual).toBe(str)
+  })
+
+  it('Does not remove non-trailing <br> elements regardless of case', () => {
+    const str = '<br><BR>foo<BR><br>br'
+    const actual = removeTrailingBrElements(str)
+
+    expect(actual).toBe(str)
+  })
+
+  it('Removes all trailing <br> element variants', () => {
+    const str = '<br>foo<br>bar<br><br/><br /><BR><BR/><BR />'
+    const actual = removeTrailingBrElements(str)
+    const expected = '<br>foo<br>bar'
+
+    expect(actual).toBe(expected)
+  })
+})
