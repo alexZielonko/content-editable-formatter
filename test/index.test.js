@@ -5,6 +5,7 @@ import {
   removeEmptyEmphasisElements,
   removeEmptyParagraphElements,
   removeEmptyStrongElements,
+  removeLeadingBrElements,
   removeNonBreakingSpaces
 } from '../src/index'
 
@@ -291,3 +292,35 @@ describe('removeEmptyStrongElements', () => {
     expect(actual).toBe(expected)
   })
 })
+
+describe('removeLeadingBrElements', () => {
+  it('Does not remove non-leading <br> elements', () => {
+    const str = 'foo<br><br/><br />bar<br>'
+    const actual = removeLeadingBrElements(str)
+
+    expect(actual).toBe(str)
+  })
+
+  it('Does not remove non-leading <br> elements regarless of case', () => {
+    const str = 'foo<br><br/><br /><BR><BR/><BR />bar<br>'
+    const actual = removeLeadingBrElements(str)
+
+    expect(actual).toBe(str)
+  })
+
+  it('Does not remove "br" from words', () => {
+    const str = 'broom'
+    const actual = removeLeadingBrElements(str)
+
+    expect(actual).toBe(str)
+  })
+
+  it('Removes all leading <br> element variants', () => {
+    const str = '<br><br/><br /><BR><BR/><BR />foo'
+    const actual = removeLeadingBrElements(str)
+    const expected = 'foo'
+
+    expect(actual).toBe(expected)
+  })
+})
+

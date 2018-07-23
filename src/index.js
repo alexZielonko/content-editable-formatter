@@ -18,6 +18,12 @@ export function removeBrElements(str) {
   return str.replace(/< ?br ?\/?>/gi, '')
 }
 
+export function removeLeadingBrElements(str) {
+  const regExp = /^(< ?br ?\/?>)+/gi
+
+  return str.replace(regExp, '')
+}
+
 // Remove inline instances of &nbsp;, the character entity reference
 // Does not remove numeric character reference
 export function removeNonBreakingSpaces(str) {

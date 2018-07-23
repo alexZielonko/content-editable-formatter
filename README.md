@@ -58,6 +58,16 @@ const input = 'foo<br>bar'
 removeBrElements(input) // 'foobar'
 ```
 
+### `removeLeadingBrElements(string)`
+
+Returns a string with all leading instances of `<br>` element variants (`<br>`, `<br />`, `< br />`,`<BR>`, `<BR />`, `< BR />`) removed.
+
+```js
+const input = '<br>foo<br>bar<br>'
+
+removeLeadingBrElements(input) // 'foo<br>bar<br>'
+```
+
 ### `removeNonBreakingSpaces(string)`
 
 Returns a string with all inline instance of `&nbsp;` removed. This does not remove the numeric character references (`&#160;`, `&#xA0;`).
@@ -153,6 +163,5 @@ Methods to be implemented in future versions include,
 * `removeAllHtmlElements(string)`
 * `removeCaridgeReturns(string)`
 * `removeWhiteSpaceMetacharacters(string)`
-* `removeLeadingBrElement(string)`
 * `removeTrailingBrElement(string)`
 * `unescapeHtml(string)`
