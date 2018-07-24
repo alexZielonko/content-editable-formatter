@@ -40,6 +40,8 @@ export function removeEmptyEmphasisElements(str) {
   const regExp = /<em><\/em>/gi
   const newStr = str.replace(regExp, '')
 
+  // Recursively handle removal of multiple empty emphasis elements, such as
+  // <em><em></em></em>
   if (!!newStr.match(regExp)) {
     return removeEmptyEmphasisElements(newStr)
   }
@@ -51,6 +53,8 @@ export function removeEmptyParagraphElements(str) {
   const regExp = /<p><\/p>/gi
   const newStr = str.replace(regExp, '')
 
+  // Recursively handle removal of multiple empty paragraph elements, such as
+  // <p><p></p></p>
   if (!!newStr.match(regExp)) {
     return removeEmptyParagraphElements(newStr)
   }
@@ -62,6 +66,8 @@ export function removeEmptyStrongElements(str) {
   const regExp = /<strong><\/strong>/gi
   const newStr = str.replace(regExp, '')
 
+  // Recursively handle removal of multiple empty strong elements, such as
+  // <strong><strong></strong></strong>
   if (!!newStr.match(regExp)) {
     return removeEmptyStrongElements(newStr)
   }
