@@ -1,6 +1,7 @@
 # content-editable-formatter
 
 [![Build Status](https://travis-ci.org/alexZielonko/content-editable-formatter.svg?branch=master)](https://travis-ci.org/alexZielonko/content-editable-formatter)
+[![npm Version](https://img.shields.io/badge/npm-v2.2.0-blue.svg)](https://www.npmjs.com/package/content-editable-formatter)
 
 Content-editable-formatter provides a handful of string formatting utilities for user's [contenteditable](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable) input. Although the package aims to aid sanitization of content editable div element input, it can just as easily be used to remove HTML elements by any string.
 
